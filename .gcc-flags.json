@@ -1,0 +1,8 @@
+{
+  "execPath": "arm-none-eabi-gcc",
+  "gccDefaultCFlags": "-Wall",
+  "gccDefaultCppFlags": "-Wall",
+  "gccErrorLimit": 15,
+  "gccIncludePaths": "newlib,./*",
+  "gccSuppressWarnings": true
+}
