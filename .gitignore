@@ -1,2 +1,8 @@
 build
 kernel.img
+
+lib/arm/lib/*
+!lib/arm/lib/.gitkeep
+
+lib/arm/include/*
+!lib/arm/include/.gitkeep

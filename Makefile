@@ -2,9 +2,9 @@ ARMGNU ?= arm-none-eabi
 BUILD = build
 TARGET = kernel.img
 
-LIBS = -L/usr/lib/gcc/arm-none-eabi/5.4.1
-LIBS += -L/usr/lib/arm-none-eabi/newlib
-INCLUDE = -Ilib -I/usr/incude/newlib
+LIBS = -L./lib/arm/lib/gcc
+LIBS += -L./lib/arm/lib/newlib
+INCLUDE = -Ilib -I./lib/arm/incude/newlib
 
 SRCS := $(shell find -name '*.c' -o -name '*.S')
 DIRS = $(dir $(SRCS))
