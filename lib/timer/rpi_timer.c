@@ -3,20 +3,20 @@
 #include "type/rpi_type.h"
 #include "sysconfig/rpi_sysconfig.h"
 #include <stdio.h>
-extern unsigned int getmode(void);
 
+extern unsigned int getmode(void);
 extern void enable_IRQ(void);
 
 // Timer IRQ function
-void (*timerIRQ_func)(void);
+void (*timer_IRQ_func)(void);
 
 
-void init_syst(void){
+void syst_init(void){
 	*SYST_CHI = 0;
 	*SYST_CLO = 0;
 }
 
-unsigned long long int get_systime(void){
+unsigned long long int syst_get_time(void){
 	unsigned long long int t;
 	unsigned int chi;
 	unsigned int clo;
@@ -41,21 +41,21 @@ unsigned long long int get_systime(void){
 }
 
 
-void enable_timer_interrupt(){
+void timer_enable_interrupt(){
 	// タイマ割り込み許可
 	*INTERRUPT_ENABLE_BASIC_IRQS |= 0x01;
-	*TIMER_CONTROL |= TMR_INT_EN;
+	*TIMER_CONTROL |= TIMER_INT_EN;
 }
 
 
-void disable_timer_interrupt(){
+void timer_disable_interrupt(){
 	// タイマ割り込み不許可
 	*INTERRUPT_ENABLE_BASIC_IRQS &= ~0x01;
-	*TIMER_CONTROL &= ~TMR_INT_EN;
+	*TIMER_CONTROL &= ~TIMER_INT_EN;
 }
 
 
-int set_timer_clock(unsigned int clock){
+int timer_set_clock(unsigned int clock){
 	// 単位はHz
 	if(clock > APB_CLOCK){
 		// error
@@ -74,71 +74,71 @@ int set_timer_clock(unsigned int clock){
 }
 
 
-unsigned int get_timer_rawIRQ(void){
+unsigned int timer_get_rawIRQ(void){
 	return *TIMER_RAWIRQ;
 }
 
-unsigned int get_timer_maskedIRQ(void){
+unsigned int timer_get_maskedIRQ(void){
 	return *TIMER_MASKEDIRQ;
 }
 
-void clear_timer_flag(void){
+void timer_clear_flag(void){
 	*TIMER_IRQ_CLR = 0;
 }
 
 // Arduino風関数
 
-void Timer_initialize(unsigned int period){
+void timer_init(unsigned int period){
 	// timer clock を1MHzに設定
-	set_timer_clock(1000000);
+	timer_set_clock(1000000);
 
 	// Timer 23bit
-	*TIMER_CONTROL |= TMR_BIT_23;
+	*TIMER_CONTROL |= TIMER_BIT_23;
 
 	// period(us)
-	Timer_stop();
+	timer_stop();
 	// Timer_start(period);
-	Timer_setPeriod(period);
+	timer_set_period(period);
 }
 
-void Timer_setPeriod(unsigned int period){
+void timer_set_period(unsigned int period){
 	// period(us)
 	*TIMER_RELOAD = period;
 	*TIMER_LOAD = period;
 }
 
-void Timer_start(void){
+void timer_start(void){
 	// Timer Start
-	*TIMER_CONTROL |= TMR_EN;
+	*TIMER_CONTROL |= TIMER_EN;
 }
 
-void Timer_stop(void){
+void timer_stop(void){
 	// Timer stop
-	*TIMER_CONTROL &= ~TMR_EN;
+	*TIMER_CONTROL &= ~TIMER_EN;
 }
 
-unsigned int Timer_read(void){
+unsigned int timer_read(void){
 	return *TIMER_VALUE;
 }
 
-void Timer_attachInterrupt(void (*f)(void)){
+void timer_attach_interrupt(void (*f)(void)){
 	// printf("func will be attached.\r\n");
 	// 割り込みフラグクリア
 	*TIMER_IRQ_CLR = 1;
 	// 関数ポインタセット
-	timerIRQ_func = f;
+	timer_IRQ_func = f;
 
 	// タイマー開始
-	Timer_start();
+	timer_start();
 
 	// 割り込み有効
-	enable_timer_interrupt();
+	timer_enable_interrupt();
 	// printf("CPSR (in timer attaching) = 0x%08x\r\n",getmode());
 	enable_IRQ();
 	// printf("attaching finished\r\n");
 }
 
-void Timer_dettachInterrupt(void){
+void timer_dettach_interrupt(void){
 	// disable interrupt
-	disable_timer_interrupt();
+	timer_disable_interrupt();
 }

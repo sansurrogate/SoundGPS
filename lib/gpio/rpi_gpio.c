@@ -2,48 +2,48 @@
 #include "periphs/rpi_periphs.h"
 #include "type/rpi_type.h"
 
-void init_gpio(void){
+void gpio_init(void){
 	int i;
 	// pullup all
-	*GPPUD 	= 0x02;
+	*GPIO_PUD 	= 0x02;
 	// wait 150 cycle
 	for(i=0;i<150;i++){
 		// nop
 		asm("nop");
 	}
-	*GPPUDCLK0 = 0xffffffff;
-	*GPPUDCLK1 = 0xffffffff;
+	*GPIO_PUDCLK0 = 0xffffffff;
+	*GPIO_PUDCLK1 = 0xffffffff;
 	// wait 150 cycle
 	for(i=0;i<150;i++){
 		// nop
 		asm("nop");
 	}
-	*GPPUDCLK0 = 0;
-	*GPPUDCLK1 = 0;
+	*GPIO_PUDCLK0 = 0;
+	*GPIO_PUDCLK1 = 0;
 
-	*GPFSEL0 = 0;
-	*GPFSEL1 = 0;
-	*GPFSEL2 = 0;
-	*GPFSEL3 = 0;
-	*GPFSEL4 = 0;
-	*GPFSEL5 = 0;
+	*GPIO_FSEL0 = 0;
+	*GPIO_FSEL1 = 0;
+	*GPIO_FSEL2 = 0;
+	*GPIO_FSEL3 = 0;
+	*GPIO_FSEL4 = 0;
+	*GPIO_FSEL5 = 0;
 }
 
-void setPullUpDown(int pin,int mode){
+void gpio_set_pullup_pulldown(int pin,int mode){
 	int i;
 	vu32_t *res;
 
 	if(pin <= 32){
-		res = GPPUDCLK0;
+		res = GPIO_PUDCLK0;
 	}
 	else{
-		res = GPPUDCLK1;
+		res = GPIO_PUDCLK1;
 	}
 	// set PULLUP
-	if(mode == INPUT_PULLUP){
-		*GPPUD 	= 0x02;
-	}else if (mode == INPUT_PULLDOWN){
-		*GPPUD 	= 0x01;
+	if(mode == GPIO_INPUT_PULLUP){
+		*GPIO_PUD 	= 0x02;
+	}else if (mode == GPIO_INPUT_PULLDOWN){
+		*GPIO_PUD 	= 0x01;
 	}else{
 		return;
 	}
@@ -63,27 +63,27 @@ void setPullUpDown(int pin,int mode){
 }
 
 
-void pinMode(int pin,int mode){
+void gpio_set_pin_mode(int pin,int mode){
 	vu32_t *res;
 
 	// GPFSEL select
 	if(0 <= pin && pin <= 9){
-		res = GPFSEL0;
+		res = GPIO_FSEL0;
 	}else if (pin <= 19)
 	{
-		res = GPFSEL1;
+		res = GPIO_FSEL1;
 	}else if (pin <= 29)
 	{
-		res = GPFSEL2;
+		res = GPIO_FSEL2;
 	}else if (pin <= 39)
 	{
-		res = GPFSEL3;
+		res = GPIO_FSEL3;
 	}else if (pin <= 49)
 	{
-		res = GPFSEL4;
+		res = GPIO_FSEL4;
 	}else if (pin <= 53)
 	{
-		res = GPFSEL5;
+		res = GPIO_FSEL5;
 	}else{
 		// pin missmuch
 		return;
@@ -91,37 +91,37 @@ void pinMode(int pin,int mode){
 
 	// mode set
 	switch(mode){
-		case INPUT:
-			*res &= GPFSEL_MASK_IN(pin);
+		case GPIO_INPUT:
+			*res &= GPIO_FSEL_MASK_IN(pin);
 			break;
-		case INPUT_PULLUP:
-			setPullUpDown(pin,INPUT_PULLUP);
-			*res &= GPFSEL_MASK_IN(pin);
+		case GPIO_INPUT_PULLUP:
+			gpio_set_pullup_pulldown(pin,GPIO_INPUT_PULLUP);
+			*res &= GPIO_FSEL_MASK_IN(pin);
 			break;
-		case INPUT_PULLDOWN:
-			setPullUpDown(pin,INPUT_PULLDOWN);
-			*res &= GPFSEL_MASK_IN(pin);
+		case GPIO_INPUT_PULLDOWN:
+			gpio_set_pullup_pulldown(pin,GPIO_INPUT_PULLDOWN);
+			*res &= GPIO_FSEL_MASK_IN(pin);
 			break;
-		case OUTPUT:
-			*res |= GPFSEL_MASK_OUT(pin);
+		case GPIO_OUTPUT:
+			*res |= GPIO_FSEL_MASK_OUT(pin);
 			break;
-		case ALT0:
-			*res |= GPFSEL_MASK_ALT0(pin);
+		case GPIO_ALT0:
+			*res |= GPIO_FSEL_MASK_ALT0(pin);
 			break;
-		case ALT1:
-			*res |= GPFSEL_MASK_ALT1(pin);
+		case GPIO_ALT1:
+			*res |= GPIO_FSEL_MASK_ALT1(pin);
 			break;
-		case ALT2:
-			*res |= GPFSEL_MASK_ALT2(pin);
+		case GPIO_ALT2:
+			*res |= GPIO_FSEL_MASK_ALT2(pin);
 			break;
-		case ALT3:
-			*res |= GPFSEL_MASK_ALT3(pin);
+		case GPIO_ALT3:
+			*res |= GPIO_FSEL_MASK_ALT3(pin);
 			break;
-		case ALT4:
-			*res |= GPFSEL_MASK_ALT4(pin);
+		case GPIO_ALT4:
+			*res |= GPIO_FSEL_MASK_ALT4(pin);
 			break;
-		case ALT5:
-			*res |= GPFSEL_MASK_ALT5(pin);
+		case GPIO_ALT5:
+			*res |= GPIO_FSEL_MASK_ALT5(pin);
 			break;
 		default:
 			// error!
@@ -131,28 +131,28 @@ void pinMode(int pin,int mode){
 }
 
 
-void digitalWrite(int pin, int value){
+void gpio_write(int pin, int value){
 	vu32_t *res;
 
-	if(value == HIGH){
+	if(value == GPIO_HIGH){
 		// GPSET select
 		if(0 <= pin && pin <= 32){
-			res = GPSET0;
+			res = GPIO_SET0;
 		}else if (pin <= 53)
 		{
-			res = GPSET1;
+			res = GPIO_SET1;
 		}else{
 			// pin missmuch
 			return;
 		}
 	}
-	else if(value == LOW){
+	else if(value == GPIO_LOW){
 		// GPCLR select
 		if(0 <= pin && pin <= 32){
-			res = GPCLR0;
+			res = GPIO_CLR0;
 		}else if (pin <= 53)
 		{
-			res = GPCLR1;
+			res = GPIO_CLR1;
 		}else{
 			// pin missmuch
 			return;
@@ -167,16 +167,16 @@ void digitalWrite(int pin, int value){
 }
 
 
-int digitalRead(int pin){
+int gpio_read(int pin){
 	unsigned int val;
 	unsigned int mask;
 
 	// GPCLR select
 	if(0 <= pin && pin <= 32){
-		val = *GPLEV0;
+		val = *GPIO_LEV0;
 	}else if (pin <= 53)
 	{
-		val = *GPLEV1;
+		val = *GPIO_LEV1;
 	}else{
 		// pin missmuch
 		return -1;
@@ -185,7 +185,7 @@ int digitalRead(int pin){
 	// input
 	mask = 0x01 << (pin % 32);
 	if((val & mask) != 0){
-		return HIGH;
+		return GPIO_HIGH;
 	}
-	return LOW;
+	return GPIO_LOW;
 }

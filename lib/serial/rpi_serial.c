@@ -11,7 +11,7 @@
 long long write_to = -1;
 long long read_to = -1;
 
-void setSerialTimeout(int read_ms,int write_ms){
+void serial_set_timeout(int read_ms,int write_ms){
 	// 読み込みタイムアウト設定
 	if(read_ms <= 0){
 		read_to = -1;
@@ -28,7 +28,7 @@ void setSerialTimeout(int read_ms,int write_ms){
 	}
 }
 
-int Serial_begin(unsigned int baudrate){
+int serial_begin(unsigned int baudrate){
 	unsigned int baudrate_temp[11]={300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200 };
 	unsigned int ib_list[] = {625, 156,78,39,19,13,9,6,4,3,1};
 	unsigned int fb_list[] = {0,16,8,4,34,1,49,33,57,16,40};
@@ -50,10 +50,10 @@ int Serial_begin(unsigned int baudrate){
 	*UART0_CR 	= 0;
 
 	//ポートの設定
-	pinMode(14,INPUT_PULLDOWN);
-	pinMode(15,INPUT_PULLDOWN);
-	pinMode(14,ALT0);
-	pinMode(15,ALT0);
+	gpio_set_pin_mode(14,GPIO_INPUT_PULLDOWN);
+	gpio_set_pin_mode(15,GPIO_INPUT_PULLDOWN);
+	gpio_set_pin_mode(14,GPIO_ALT0);
+	gpio_set_pin_mode(15,GPIO_ALT0);
 
 	// ボーレート計算
 	// 諸事情により断念
@@ -78,19 +78,19 @@ int Serial_begin(unsigned int baudrate){
 	return 0;
 }
 
-void Serial_end(void){
+void serial_end(void){
 	// UART無効化
 	*UART0_CR = 0;
 }
 
-int Serial_available(void){
+int serial_available(void){
 	if(!(*UART0_FR & (0x01 << 4))){
 		return 1;
 	}
 	return 0;
 }
 
-int Serial_write(char *buf,int len){
+int serial_write(char *buf,int len){
 	int i=0;
 	while(i < len){
 		if(uart0_putc(*buf) < 0)
@@ -105,12 +105,12 @@ int uart0_getc(void){
 	unsigned long long to;
 	// タイムアウトが設定されている場合はセット
 	if(read_to != -1){
-		to = micros() + read_to;
+		to = syst_micros() + read_to;
 	}
 	// データが来るまで待つ
-	while(Serial_available() == 0){
+	while(serial_available() == 0){
 		if(read_to != -1){
-			if(to < micros())
+			if(to < syst_micros())
 				return -1;
 		}
 	}
@@ -123,12 +123,12 @@ int uart0_putc(int c){
 	unsigned long long to;
 	// タイムアウトが設定されている場合はセット
 	if(write_to != -1){
-		to = micros() + write_to;
+		to = syst_micros() + write_to;
 	}
 	// 送信FIFOが空くのを待つ
 	while(*UART0_FR & (0x01 << 5)){
 		if(write_to != -1){
-			if(to < micros())
+			if(to < syst_micros())
 				return -1;
 		}
 	}

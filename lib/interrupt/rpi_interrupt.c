@@ -29,7 +29,7 @@ extern unsigned int getmode(void);
 // }
 
 
-void disable_all_IRQ(void){
+void interrupt_disable_all_IRQ(void){
 	// すべての割り込み不許可
 	*INTERRUPT_DISABLE_BASIC_IRQS = 0xffffffff;
 	*INTERRUPT_DISABLE_IRQS1 = 0xffffffff;
@@ -42,7 +42,7 @@ void disable_all_IRQ(void){
 
 
 // IRQ割り込みハンドラ
-void IRQ_handler(void){
+void interrupt_IRQ_handler(void){
 	// IRQ割り込みを停止
 	disable_IRQ();
 	// printf("0x%04x\r\n",getmode());
@@ -60,7 +60,7 @@ void IRQ_handler(void){
 		// printf("irq_pending0 before : 0x%08x\r\n",*INTERRUPT_IRQ_BASIC_PENDING);
 
 		// タイマ割り込み処理
-		(*timerIRQ_func)();
+		(*timer_IRQ_func)();
 
 		// 割り込みフラグクリア
 		*TIMER_IRQ_CLR = 0;

@@ -55,7 +55,7 @@ _IRQ_iterrupt:
 	// スタックにレジスタの内容を退避させる
 	stmfd	r13!, {r0-r12,lr}
 	// C言語の割り込みハンドラ呼び出し
-	bl	IRQ_handler
+	bl	interrupt_IRQ_handler
 	// スタックからレジスタの内容を復元する。
 	ldmfd	r13!, {r0-r12,lr}
 	// 戻りアドレス修正（IRQはlr-4）して、元の実行番地に復帰

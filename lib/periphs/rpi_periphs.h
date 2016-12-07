@@ -7,33 +7,34 @@
 
 // GPIO Peripheral
 #define GPIO_BASE	(0x00200000)
-#define GPFSEL0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x00))
-#define GPFSEL1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x04))
-#define GPFSEL2		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x08))
-#define GPFSEL3		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x0c))
-#define GPFSEL4		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x10))
-#define GPFSEL5		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x14))
-#define GPSET0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x1c))
-#define GPSET1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x20))
-#define GPCLR0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x28))
-#define GPCLR1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x2c))
-#define GPLEV0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x34))
-#define GPLEV1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x38))
+#define GPIO_FSEL0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x00))
+#define GPIO_FSEL1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x04))
+#define GPIO_FSEL2		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x08))
+#define GPIO_FSEL3		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x0c))
+#define GPIO_FSEL4		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x10))
+#define GPIO_FSEL5		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x14))
+
+#define GPIO_SET0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x1c))
+#define GPIO_SET1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x20))
+#define GPIO_CLR0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x28))
+#define GPIO_CLR1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x2c))
+#define GPIO_LEV0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x34))
+#define GPIO_LEV1		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x38))
 // for GPFSEL mask
 // use AND mask
-#define GPFSEL_MASK_IN(n)	(~(vu32_t)(0x07 << ((n % 10) * 3)))
+#define GPIO_FSEL_MASK_IN(n)	(~(vu32_t)(0x07 << ((n % 10) * 3)))
 // use OR mask
-#define GPFSEL_MASK_OUT(n)	(0x01 << ((n % 10) * 3))
-#define GPFSEL_MASK_ALT0(n)	(0x04 << ((n % 10) * 3))
-#define GPFSEL_MASK_ALT1(n)	(0x05 << ((n % 10) * 3))
-#define GPFSEL_MASK_ALT2(n)	(0x06 << ((n % 10) * 3))
-#define GPFSEL_MASK_ALT3(n)	(0x07 << ((n % 10) * 3))
-#define GPFSEL_MASK_ALT4(n)	(0x03 << ((n % 10) * 3))
-#define GPFSEL_MASK_ALT5(n)	(0x02 << ((n % 10) * 3))
+#define GPIO_FSEL_MASK_OUT(n)	(0x01 << ((n % 10) * 3))
+#define GPIO_FSEL_MASK_ALT0(n)	(0x04 << ((n % 10) * 3))
+#define GPIO_FSEL_MASK_ALT1(n)	(0x05 << ((n % 10) * 3))
+#define GPIO_FSEL_MASK_ALT2(n)	(0x06 << ((n % 10) * 3))
+#define GPIO_FSEL_MASK_ALT3(n)	(0x07 << ((n % 10) * 3))
+#define GPIO_FSEL_MASK_ALT4(n)	(0x03 << ((n % 10) * 3))
+#define GPIO_FSEL_MASK_ALT5(n)	(0x02 << ((n % 10) * 3))
 // GPIO PULLUP/DOWN
-#define GPPUD 		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x94))
-#define GPPUDCLK0	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x98))
-#define GPPUDCLK1	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x9C))
+#define GPIO_PUD 		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x94))
+#define GPIO_PUDCLK0	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x98))
+#define GPIO_PUDCLK1	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x9C))
 
 
 // SystemTimer Peripheral

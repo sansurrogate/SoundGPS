@@ -1,4 +1,4 @@
-void clear_bss(void){
+void bss_clear(void){
   extern void *__bss_start;
   extern void *__bss_end;
 

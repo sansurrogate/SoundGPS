@@ -5,17 +5,17 @@
 #include "interrupt/rpi_interrupt.h"
 
 void rpi_init(void){
-	clear_bss();
+	bss_clear();
 
-	disable_all_IRQ();
+	interrupt_disable_all_IRQ();
 
 	// set_vector_table();
 
-	init_syst();
+	syst_init();
 
-	init_gpio();
+	gpio_init();
 
-	Serial_begin(115200);
+	serial_begin(115200);
 
-	Timer_initialize(10000);
+	timer_init(10000);
 }

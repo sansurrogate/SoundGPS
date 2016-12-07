@@ -1,18 +1,18 @@
 #ifndef RPILIB_SERIAL_H
 #define RPILIB_SERIAL_H
 
-void setSerialTimeout(int read_ms,int write_ms);
+void serial_set_timeout(int read_ms,int write_ms);
 
 int uart0_getc(void);
 int uart0_putc(int c);
 int uart0_puts(char *s);
 char *uart0_gets(char *s,int len);
 
-int Serial_begin(unsigned int baudrate);
-void Serial_end(void);
-int Serial_available(void);
+int serial_begin(unsigned int baudrate);
+void serial_end(void);
+int serial_available(void);
 
-int Serial_write(char *buf,int len);
-#define Serial_read		uart0_getc
+int serial_write(char *buf,int len);
+#define serial_read		uart0_getc
 
 #endif
