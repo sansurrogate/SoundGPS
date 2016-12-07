@@ -3,6 +3,8 @@
 
 #include "type/rpi_type.h"
 
+// レジスタやメモリマップドIOのアドレス定義のためのファイル
+
 #define PHY_PERI_ADDR(x) (0x3f000000 + (x))
 
 // GPIO Peripheral

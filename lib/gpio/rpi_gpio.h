@@ -20,8 +20,19 @@
 void gpio_init(void);
 
 // functions
+// GPIOを入力用に設定する際は、以下のように
+// pullup/downを設定してから、inputに設定する。
+// gpio_set_pin_mode(47, GPIO_INPUT_PULLUP);
+// gpio_set_pin_mode(47, GPIO_INPUT);
+
+// GPIOを出力用に設定する際は、そのまま
+// gpio_set_pin_mode(47, GPIO_OUTPUT);
+// と、いきなりoutputに設定して良い。
+
 void gpio_set_pullup_pulldown(int pin,int mode);
 void gpio_set_pin_mode(int pin,int mode);
+// 出力用のGPIOピンの出力電圧を設定
 void gpio_write(int pin, int value);
+// 入力用のGPIOピンの入力電圧を読み取り
 int gpio_read(int pin);
 #endif
