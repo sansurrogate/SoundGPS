@@ -92,8 +92,8 @@ void Timer_initialize(unsigned int period){
 	// timer clock を1MHzに設定
 	set_timer_clock(1000000);
 
-	// Timer 32bit
-	*TIMER_CONTROL |= TMR_BIT_32;
+	// Timer 23bit
+	*TIMER_CONTROL |= TMR_BIT_23;
 
 	// period(us)
 	Timer_stop();
@@ -122,7 +122,7 @@ unsigned int Timer_read(void){
 }
 
 void Timer_attachInterrupt(void (*f)(void)){
-	printf("func will be attached.\r\n");
+	// printf("func will be attached.\r\n");
 	// 割り込みフラグクリア
 	*TIMER_IRQ_CLR = 1;
 	// 関数ポインタセット
@@ -133,9 +133,9 @@ void Timer_attachInterrupt(void (*f)(void)){
 
 	// 割り込み有効
 	enable_timer_interrupt();
-	printf("CPSR (in timer attaching) = 0x%08x\r\n",getmode());
+	// printf("CPSR (in timer attaching) = 0x%08x\r\n",getmode());
 	enable_IRQ();
-	printf("attaching finished\r\n");
+	// printf("attaching finished\r\n");
 }
 
 void Timer_dettachInterrupt(void){

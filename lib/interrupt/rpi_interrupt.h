@@ -2,7 +2,7 @@
 #define RPI_INTERRUPT_H
 
 // 関数定義
-void set_vector_table(void);
+// void set_vector_table(void);
 void disable_all_IRQ(void);
 void IRQ_handler(void);
 

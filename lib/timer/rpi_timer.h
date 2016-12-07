@@ -14,7 +14,7 @@ unsigned long long int get_systime(void);
 #define	TMR_DBG_STOP	(0x00000100)
 #define TMR_EN			(0x00000080)
 #define TMR_INT_EN		(0x00000020)
-#define TMR_BIT_32		(0x00000002)
+#define TMR_BIT_23		(0x00000002)
 
 
 void Timer_initialize(unsigned int period);

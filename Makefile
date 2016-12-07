@@ -30,7 +30,7 @@ $(BUILD)/output.elf: $(OBJS)
 	$(ARMGNU)-ld -static -nostartfiles -T kernel.ld -o $@ $^ $(LIBS) -lc -lgcc
 
 $(BUILD)/%.o: %.S
-	$(ARMGNU)-as -mfpu=neon-vfpv4 -mfloat-abi=softfp -march=armv7-a -o $@ $<
+	$(ARMGNU)-as -o $@ $<
 
 $(BUILD)/%.o: %.c
 	$(ARMGNU)-gcc -mfpu=neon-vfpv4 -mfloat-abi=softfp -march=armv7-a -mtune=cortex-a7 -O2 -c -ffreestanding -fno-delete-null-pointer-checks $(INCLUDE) -o $@ $<

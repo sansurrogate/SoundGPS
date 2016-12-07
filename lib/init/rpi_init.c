@@ -9,7 +9,7 @@ void rpi_init(void){
 
 	disable_all_IRQ();
 
-	set_vector_table();
+	// set_vector_table();
 
 	init_syst();
 
@@ -17,5 +17,5 @@ void rpi_init(void){
 
 	Serial_begin(115200);
 
-	Timer_initialize(1000);
+	Timer_initialize(10000);
 }
