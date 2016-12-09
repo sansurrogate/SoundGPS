@@ -119,5 +119,20 @@
 #define INTERRUPT_DISABLE_IRQS2			((vu32_t *)PHY_PERI_ADDR(INTERRUPT_BASE + 0x220))
 #define INTERRUPT_DISABLE_BASIC_IRQS	((vu32_t *)PHY_PERI_ADDR(INTERRUPT_BASE + 0x224))
 
+// PWM Peripheral
+#define PWM_BASE (0x20C000)
+#define PWM_CTL ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x00))
+#define PWM_STA ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x04))
+#define PWM_DMAC ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x08))
+#define PWM_RNG1 ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x10))
+#define PWM_DAT1 ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x14))
+#define PWM_FIF1 ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x18))
+#define PWM_RNG2 ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x20))
+#define PWM_DAT2 ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x24))
+
+// Clock Manager
+#define CM_BASE (0x101000)
+#define CM_PWMCTL ((vu32_t *)PHY_PERI_ADDR(CM_BASE + 0xa0))
+#define CM_PWMDIV ((vu32_t *)PHY_PERI_ADDR(CM_BASE + 0xa4))
 
 #endif /* end of include guard: RPI_PERIPHS_H */
