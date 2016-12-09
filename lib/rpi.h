@@ -7,6 +7,7 @@
 #include "interrupt/rpi_interrupt.h"
 #include "periphs/rpi_periphs.h"
 #include "serial/rpi_serial.h"
+#include "pwm/rpi_pwm.h"
 #include "type/rpi_type.h"
 #include "timer/rpi_timer.h"
 
