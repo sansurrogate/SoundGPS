@@ -5,8 +5,11 @@
 
 // レジスタやメモリマップドIOのアドレス定義のためのファイル
 
+#ifdef RPI2
 #define PHY_PERI_ADDR(x) (0x3f000000 + (x))
-
+#else
+#define PHY_PERI_ADDR(x) (0x20000000 + (x))
+#endif
 // GPIO Peripheral
 #define GPIO_BASE	(0x00200000)
 #define GPIO_FSEL0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x00))
