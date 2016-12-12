@@ -41,6 +41,21 @@
 #define GPIO_PUDCLK0	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x98))
 #define GPIO_PUDCLK1	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x9C))
 
+#define GPIO_EDS0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x40))
+#define GPIO_EDS1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x44))
+#define GPIO_REN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x4c))
+#define GPIO_REN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x50))
+#define GPIO_FEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x58))
+#define GPIO_FEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x5c))
+#define GPIO_HEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x64))
+#define GPIO_HEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x68))
+#define GPIO_LEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x70))
+#define GPIO_LEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x74))
+#define GPIO_AREN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x7c))
+#define GPIO_AREN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x80))
+#define GPIO_AFEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x88))
+#define GPIO_AFEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x8c))
+
 
 // SystemTimer Peripheral
 #define SYST_BASE	(0x00003000)
