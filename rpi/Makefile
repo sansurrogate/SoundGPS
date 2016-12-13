@@ -50,6 +50,7 @@ all:
 compile: $(TARGET).img
 
 $(TARGET).img: $(BUILD)/output.elf
+	$(ARMGNU)-objdump -D $< > $(BUILD)/dumpfile
 	$(ARMGNU)-objcopy $< -O binary $@
 
 $(BUILD)/output.elf: $(OBJS)
