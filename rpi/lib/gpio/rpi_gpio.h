@@ -18,8 +18,6 @@
 
 #define GPIO_RISING
 #define GPIO_FALLING
-#define GPIO_HIGH
-#define GPIO_LOW
 #define GPIO_ASYNC_RISING
 #define GPIO_ASYNC_FALLING
 
