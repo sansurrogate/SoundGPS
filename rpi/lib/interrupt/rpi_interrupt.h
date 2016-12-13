@@ -11,6 +11,9 @@ void interrupt_init_exception_vector(void);
 // 全ての割り込みを無効にする
 void interrupt_disable_all_IRQ(void);
 
+// 割り込み有効化
+void interrupt_enable_IRQ(void);
+
 // 割り込みハンドラ
 // (IRQ割り込みbitが立てられたら、この関数が呼び出される)
 void interrupt_IRQ_handler(void);

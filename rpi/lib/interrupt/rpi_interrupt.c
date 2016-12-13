@@ -1,5 +1,6 @@
-#include "timer/rpi_timer.h"
 #include "periphs/rpi_periphs.h"
+#include "timer/rpi_timer.h"
+#include "synchronize/rpi_synchronize.h"
 #include <stdio.h>
 #include <stdint.h>
 
@@ -39,6 +40,9 @@ void interrupt_disable_all_IRQ(void){
 	disable_IRQ();
 }
 
+void interrupt_enable_IRQ() {
+	enable_IRQ();
+}
 
 // IRQ割り込みハンドラ
 void interrupt_IRQ_handler(void){
@@ -49,27 +53,10 @@ void interrupt_IRQ_handler(void){
 	// printf("get IRQ in IRQ handler\r\n");
 	// printf("CPSR (in IRQ_handler) = 0x%08x\r\n",getmode());
 
-	static int state = 0;
-	static int count = 0;
 	if((*INTERRUPT_IRQ_PENDING2 & (1 << 20)) != 0) {
-		int flag = (*INTERRUPT_IRQ_PENDING2 >> 17) & (0xf);
-		int eds0 = *GPIO_EDS0;
-		int eds1 = *GPIO_EDS1;
-		printf("gpio_%d 0x%x\r\n", count, flag);
-		printf("eds0: 0x%08x\r\n", eds0);
-		printf("eds1: 0x%08x\r\n\n", eds1);
-		gpio_write(47, state);
-		state ^= 1;
+		(*synchronize_IRQ_func)();
 		*GPIO_EDS0 = 0xffffffff;
 		*GPIO_EDS1 = 0xffffffff;
-		flag = (*INTERRUPT_IRQ_PENDING2 >> 17) & (0xf);
-		eds0 = *GPIO_EDS0;
-		eds1 = *GPIO_EDS1;
-		printf("gpio_1 0x%x\r\n", flag);
-		printf("eds0: 0x%08x\r\n", eds0);
-		printf("eds1: 0x%08x\r\n\n", eds1);
-
-		count++;
 	}
 
 	// Basic IRQ pendingをチェック

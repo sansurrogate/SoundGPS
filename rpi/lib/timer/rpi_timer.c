@@ -134,7 +134,7 @@ void timer_attach_interrupt(void (*f)(void)){
 	// 割り込み有効
 	timer_enable_interrupt();
 	// printf("CPSR (in timer attaching) = 0x%08x\r\n",getmode());
-	enable_IRQ();
+	// enable_IRQ();
 	// printf("attaching finished\r\n");
 }
 
