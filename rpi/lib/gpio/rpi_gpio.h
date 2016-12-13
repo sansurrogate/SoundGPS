@@ -16,6 +16,13 @@
 #define GPIO_INPUT_PULLUP	0x08
 #define GPIO_INPUT_PULLDOWN	0x09
 
+#define GPIO_RISING
+#define GPIO_FALLING
+#define GPIO_HIGH
+#define GPIO_LOW
+#define GPIO_ASYNC_RISING
+#define GPIO_ASYNC_FALLING
+
 // init
 void gpio_init(void);
 
@@ -29,10 +36,13 @@ void gpio_init(void);
 // gpio_set_pin_mode(47, GPIO_OUTPUT);
 // と、いきなりoutputに設定して良い。
 
-void gpio_set_pullup_pulldown(int pin,int mode);
-void gpio_set_pin_mode(int pin,int mode);
+void gpio_set_pullup_pulldown(int pin, int mode);
+void gpio_set_pin_mode(int pin, int mode);
 // 出力用のGPIOピンの出力電圧を設定
 void gpio_write(int pin, int value);
 // 入力用のGPIOピンの入力電圧を読み取り
 int gpio_read(int pin);
+
+// void gpio_attach_interrupt(int pin, int event, void (*f)(void));
+// void gpio_detach_interrupt(int pin);
 #endif

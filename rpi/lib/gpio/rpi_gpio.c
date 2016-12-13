@@ -1,4 +1,4 @@
-#include "rpi_gpio.h"
+#include "gpio/rpi_gpio.h"
 #include "periphs/rpi_periphs.h"
 #include "type/rpi_type.h"
 
@@ -63,7 +63,7 @@ void gpio_set_pullup_pulldown(int pin,int mode){
 }
 
 
-void gpio_set_pin_mode(int pin,int mode){
+void gpio_set_pin_mode(int pin, int mode){
 	vu32_t *res;
 
 	// GPFSEL select
