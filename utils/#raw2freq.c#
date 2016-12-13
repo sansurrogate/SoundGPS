@@ -138,6 +138,19 @@ void print_complex(FILE * wp,
   }
 }
 
+void print_freq(complex double* Y, long n, double f)
+{
+     long i;
+  for (i = 0; i < n; i++) {
+    printf( "%ld %f %f %f %f\n", 
+	    i, 
+	    creal(Y[i]), cimag(Y[i]),
+	    cabs(Y[i]), atan2(cimag(Y[i]), creal(Y[i])));
+  } 
+
+}
+
+
 
 int main(int argc, char ** argv) {
   if(argc < 3) 
