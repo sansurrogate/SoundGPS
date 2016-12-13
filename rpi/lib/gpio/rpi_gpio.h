@@ -1,8 +1,8 @@
 #ifndef RPILIB_GPIO_H
 #define RPILIB_GPIO_H
 
-#define GPIO_HIGH	1
-#define GPIO_LOW		0
+#define GPIO_HIGH 1
+#define GPIO_LOW 0
 
 // GPIO mode
 #define GPIO_INPUT	0x01
