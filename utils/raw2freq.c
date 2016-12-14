@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef short sample_t;
+typedef char sample_t;
 
 void die(char * s) {
   perror(s); 
@@ -138,11 +138,27 @@ void print_complex(FILE * wp,
   }
 }
 
+void cat_freq( 
+              complex double * Y, long n, double f) {
+  long i;
+  for (i = 0; i < n; i++) {
+    printf( "%ld %f %f %f %f %f\n", 
+            i,
+            f*(double)i/(double)n,
+	    creal(Y[i]), cimag(Y[i]),
+	    cabs(Y[i]), atan2(cimag(Y[i]), creal(Y[i])));
+  }
+}
+
+
+
 
 int main(int argc, char ** argv) {
   if(argc < 3) 
       {
           fprintf(stderr,"Usage: raw2freq.exe [sample sets n] [freq Hz]");
+          exit(1);
+          
       }
   long n = atol(argv[1]);
   double f = atof(argv[2]);
@@ -164,16 +180,10 @@ int main(int argc, char ** argv) {
     sample_to_complex(buf, X, n);
     /* FFT -> Y */
     fft(X, Y, n);
-    
-    print_complex(wp, Y, n);
-    fprintf(wp, "----------------\n");
 
-    /* IFFT -> Z */
-    ifft(Y, X, n);
-    /* 標本の配列に変換 */
-    complex_to_sample(X, buf, n);
-    /* 標準出力へ出力 */
-    write_n(1, m, buf);
+    //標準出力にデータを出力
+    cat_freq( Y, n, f);
+
   }
   fclose(wp);
   return 0;
