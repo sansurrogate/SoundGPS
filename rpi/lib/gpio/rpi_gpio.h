@@ -1,8 +1,8 @@
 #ifndef RPILIB_GPIO_H
 #define RPILIB_GPIO_H
 
-#define GPIO_HIGH	1
-#define GPIO_LOW		0
+#define GPIO_HIGH 1
+#define GPIO_LOW 0
 
 // GPIO mode
 #define GPIO_INPUT	0x01
@@ -29,10 +29,11 @@ void gpio_init(void);
 // gpio_set_pin_mode(47, GPIO_OUTPUT);
 // と、いきなりoutputに設定して良い。
 
-void gpio_set_pullup_pulldown(int pin,int mode);
-void gpio_set_pin_mode(int pin,int mode);
+void gpio_set_pullup_pulldown(int pin, int mode);
+void gpio_set_pin_mode(int pin, int mode);
 // 出力用のGPIOピンの出力電圧を設定
 void gpio_write(int pin, int value);
 // 入力用のGPIOピンの入力電圧を読み取り
 int gpio_read(int pin);
+
 #endif

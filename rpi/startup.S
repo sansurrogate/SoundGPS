@@ -2,6 +2,8 @@
 	.global _start
 	.align
 _start:
+	.global _exception_vector_start
+_exception_vector_start:
 	ldr pc,reset_handler
 	ldr pc,undefined_handler
 	ldr pc,swi_handler
@@ -18,24 +20,32 @@ data_handler:       .word _hang
 hyp_handler:        .word _hang
 irq_handler:        .word _IRQ_iterrupt
 fiq_handler:        .word _hang
+	.global _exception_vector_end
+_exception_vector_end:
 
 _reset:
-	// SVCモードのスタックポインタ設定
-	// IRQ,FIQ disable, Thumb disable, SVC mode
-	;@mov	r0, #0x000000d3
-	;@msr	cpsr_c, r0
+.ifdef RPI2
 	// 割り込みベクタを0x8000にリマップ
 	mov r0,#0x8000
 	MCR p15, 4, r0, c12, c0, 0
 	ldr	sp, =0x06400000
 
+.else
 	// IRQモードのスタックポインタ設定
 	// IRQ,FIQ disable, Thumb disable, IRQ mode
-	@mov	r0, #0x000000f2
-	@msr	cpsr_c, r0
-	@ldr	sp, =0x00008000
-	@eret
+	mov	r0, #0x000000d2
+	msr	cpsr_c, r0
+	ldr	sp, =0x00008000
 
+	// SVCモードのスタックポインタ設定
+	// IRQ,FIQ disable, Thumb disable, SVC mode
+	mov	r0, #0x000000d3
+	msr	cpsr_c, r0
+	ldr sp, =0x06400000
+
+	// 例外ベクタをアドレス0x00に配置する
+	bl interrupt_init_exception_vector
+.endif
 
 	// main呼び出し
 	bl main
@@ -59,8 +69,11 @@ _IRQ_iterrupt:
 	// スタックからレジスタの内容を復元する。
 	ldmfd	r13!, {r0-r12,lr}
 	// 戻りアドレス修正（IRQはlr-4）して、元の実行番地に復帰
-	;@subs	pc,lr, #4
+.ifdef RPI2
 	eret
+.else
+	subs	pc,lr, #4
+.endif
 
 
 // IRQ有効化（CPSR設定）
@@ -85,28 +98,3 @@ disable_IRQ:
 getmode:
 	mrs	r0, cpsr
 	bx lr
-
-
-// ベクターテーブル設定用
-@	.global  _initial_vector_start
-@_initial_vector_start:
-@	ldr	pc, _vec_Reset
-@	ldr	pc, _vec_Undef
-@	ldr	pc, _vec_SWI
-@	ldr	pc, _vec_PrefAbort
-@	ldr	pc, _vec_DataAbort
-@	ldr	pc, _vec_Hyp
-@	ldr	pc, _vec_IRQ
-@	ldr	pc, _vec_FIQ
-@_vec_Reset:		.word	_start
-@_vec_Undef:		.word	_hangup
-@_vec_SWI:		.word	_hangup
-@_vec_PrefAbort:	.word	_hangup
-@_vec_DataAbort:	.word	_hangup
-@_vec_Hyp:	.word	_hangup
-@_vec_IRQ:		.word	_IRQ_iterrupt
-@_vec_FIQ:		.word	_hangup
-@	.global  _initial_vector_end
-@_initial_vector_end:
-@	nop
-// 最後に何か命令を置かないと_initial_vector_endラベルが消える

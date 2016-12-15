@@ -11,6 +11,9 @@ void pwm_set_data(unsigned int data);
 void pwm_start();
 void pwm_stop();
 
+#define CM_PWMCTL_BUSY (1 << 7)
+#define CM_PWMCTL_ENAB (1 << 4)
+
 void pwm_init() {
   // gpio_set_pin_mode(18, GPIO_ALT5);
   gpio_set_pin_mode(12, GPIO_INPUT_PULLDOWN);
@@ -31,11 +34,18 @@ void pwm_set_frequency(unsigned int freq) {
 
   // refer to "BCM2835 Audio and PWM Clocks" by G.J. van Loo 6 Feb 2013
   // kill = 1; stop clock gen, clock src = 1; use oscillator clock
-  *CM_PWMCTL = PWM_CLK_PASSWORD | 0x21;
+  *CM_PWMCTL = PWM_CLK_PASSWORD | (~CM_PWMCTL_ENAB & 0x1);
+  while(*CM_PWMCTL & CM_PWMCTL_BUSY) {
+    asm("nop");
+  }
+
   // set frequency
   *CM_PWMDIV = PWM_CLK_PASSWORD | (osc_clock_divisor << 12);
   // start pwm clock, without mash filter
-  *CM_PWMCTL = PWM_CLK_PASSWORD | 0x211;
+  *CM_PWMCTL = PWM_CLK_PASSWORD | (0x201 | CM_PWMCTL_ENAB);
+  while(!(*CM_PWMCTL & CM_PWMCTL_BUSY)) {
+    asm("nop");
+  }
 
   *PWM_CTL = cache;
 }
@@ -55,8 +65,4 @@ void pwm_set_len(unsigned int len) {
 
 void pwm_set_data(unsigned int data) {
   *PWM_DAT1 = data;
-}
-
-void pwm_test() {
-  pwm_set_data(0x00018fff);
 }
