@@ -1,6 +1,5 @@
 build
 *.img
-*.o
 
 /lib/arm/lib/*
 !/lib/arm/lib/.gitkeep
