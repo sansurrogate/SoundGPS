@@ -5,8 +5,11 @@
 
 // レジスタやメモリマップドIOのアドレス定義のためのファイル
 
+#ifdef RPI2
 #define PHY_PERI_ADDR(x) (0x3f000000 + (x))
-
+#else
+#define PHY_PERI_ADDR(x) (0x20000000 + (x))
+#endif
 // GPIO Peripheral
 #define GPIO_BASE	(0x00200000)
 #define GPIO_FSEL0		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x00))
@@ -37,6 +40,21 @@
 #define GPIO_PUD 		((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x94))
 #define GPIO_PUDCLK0	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x98))
 #define GPIO_PUDCLK1	((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x9C))
+
+#define GPIO_EDS0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x40))
+#define GPIO_EDS1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x44))
+#define GPIO_REN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x4c))
+#define GPIO_REN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x50))
+#define GPIO_FEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x58))
+#define GPIO_FEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x5c))
+#define GPIO_HEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x64))
+#define GPIO_HEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x68))
+#define GPIO_LEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x70))
+#define GPIO_LEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x74))
+#define GPIO_AREN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x7c))
+#define GPIO_AREN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x80))
+#define GPIO_AFEN0 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x88))
+#define GPIO_AFEN1 ((vu32_t *)PHY_PERI_ADDR(GPIO_BASE + 0x8c))
 
 
 // SystemTimer Peripheral

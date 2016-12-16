@@ -2,6 +2,7 @@
 #include "gpio/rpi_gpio.h"
 #include "serial/rpi_serial.h"
 #include "pwm/rpi_pwm.h"
+#include "synchronize/rpi_synchronize.h"
 #include "timer/rpi_timer.h"
 #include "interrupt/rpi_interrupt.h"
 
@@ -23,6 +24,9 @@ void rpi_init(void){
 
 	// pwmを初期化
 	pwm_init();
+
+	// 今のところ，pin10の立ち上がりエッジで割り込みが発生する．
+	synchronize_init();
 
 	// タイマー割り込みの割り込み周期を10000(us)に設定し、初期化(割り込みはまだ無効のまま)
 	//タイマー割り込みを有効にするにはtimer_attach_interrupt関数を使う

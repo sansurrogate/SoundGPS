@@ -10,5 +10,6 @@
 #include "pwm/rpi_pwm.h"
 #include "type/rpi_type.h"
 #include "timer/rpi_timer.h"
+#include "synchronize/rpi_synchronize.h"
 
 #endif /* end of include guard: RPI_H */
