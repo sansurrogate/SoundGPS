@@ -182,7 +182,7 @@ int main(int argc, char ** argv) {
     fft(X, Y, n);
 
     //標準出力にデータを出力
-    cat_freq( Y, n, f);
+    cat_freq(Y, n, f);
 
   }
   fclose(wp);
