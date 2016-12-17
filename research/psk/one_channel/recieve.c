@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
 #define SAMPLING_FREQ 48000
 #define CAREER_FREQ 8000
@@ -12,17 +13,17 @@
 int main(int ARGC, char *ARGV[]) {
   // recプログラムの起動
   FILE *rec;
-  char cmd[] = "rec -t raw -b 8 -c 1 -e s -r 48000 -";
+  char cmd[] = "rec -t raw -b 16 -c 1 -e s -r 48000 -";
   if((rec = popen(cmd, "r")) == NULL) {
     perror("rec");
   }
 
   int n = 0;
-  char buf[N];
+  int16_t buf[N];
 
   // 3秒間ほど録音
   while(1) {
-    n += fread(buf + n, sizeof(char), N - n, rec);
+    n += fread(buf + n, sizeof(int16_t), N - n, rec);
     if(n >= N) {
       break;
     }
