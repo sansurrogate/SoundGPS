@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdint.h>
 
 #define SAMPLING_FREQ 48000
 #define CAREER_FREQ 6000
@@ -11,7 +12,7 @@
 
 int main(int ARGC, char *ARGV[]) {
   int phy_offset[CHANNEL_NUM] = {0, 0};
-  double amp[CHANNEL_NUM] = {0.4, 0.4};
+  double amp[CHANNEL_NUM] = {0.2, 0.2};
 
   // 1チップあたりの波形
   double wave[2][SAMPLING_FREQ / CHIP_RATE];
@@ -28,8 +29,8 @@ int main(int ARGC, char *ARGV[]) {
 
   // 各チャネルの波形
   double data[CHANNEL_NUM][N];
-  for(int i = 0; i < CODE_PERIOD; i++) {
-    for(int j = 0; j < SAMPLING_FREQ / CHIP_RATE; j++) {
+  for(int i = 0; i < CODE_PERIOD; i++) { // iはこのループが何番目のチップか
+    for(int j = 0; j < SAMPLING_FREQ / CHIP_RATE; j++) { // jは
       for(int k = 0; k < CHANNEL_NUM; k++) {
         int symbol = code[k][i] ^ 1;
         data[k][i * SAMPLING_FREQ / CHIP_RATE + j] = wave[symbol][j];
@@ -38,20 +39,20 @@ int main(int ARGC, char *ARGV[]) {
   }
 
   // 実際に再生する波形
-  char buf[N];
+  int16_t buf[N];
   for(int i = 0; i < N; i++) {
     buf[i] = 0;
     for(int j = 0; j < CHANNEL_NUM; j++) {
       int idx = (N + i - phy_offset[j]) % N;
-      buf[i] += (char)(127 * amp[j] * data[j][idx]);
+      buf[i] += (int16_t)(30000 * amp[j] * data[j][idx]);
     }
   }
 
 
   // playプログラムの起動
   FILE *play;
-  char cmd[] = "play -t raw -b 8 -c 1 -e s -r 48000 -";
-  if((play = popen(cmd, "r")) == NULL) {
+  char cmd[] = "play -t raw -b 16 -c 1 -e s -r 48000 -";
+  if((play = popen(cmd, "w")) == NULL) {
     perror("play");
   }
 
