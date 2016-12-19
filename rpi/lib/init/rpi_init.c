@@ -30,5 +30,5 @@ void rpi_init(void){
 
 	// タイマー割り込みの割り込み周期を10000(us)に設定し、初期化(割り込みはまだ無効のまま)
 	//タイマー割り込みを有効にするにはtimer_attach_interrupt関数を使う
-	timer_init(10000);
+	timer_init(500000);
 }

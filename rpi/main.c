@@ -2,25 +2,37 @@
 
 #include <stdio.h>
 
-void hello() {
-  printf("Hello, gpio irq.\r\n");
+#define BEEP_DURATION 200000 // 0.2ms
+int beep_flag = 0;
+long int stop_time = 0;
+
+void beep() {
+  pwm_start();
+  stop_time = syst_micros() + BEEP_DURATION;
+  beep_flag = 1;
+}
+
+void toggle_pin() {
+  static int state = 0;
+  gpio_write(9, state);
+  state ^= 1;
 }
 
 int main(void) {
   rpi_init();
 
-  synchronize_attach_interrupt(hello);
-
   gpio_set_pin_mode(9, GPIO_OUTPUT);
+  synchronize_attach_interrupt(beep);
+  timer_attach_interrupt(toggle_pin);
 
   interrupt_enable_IRQ();
 
-  int state = 0;
   while(1) {
-    gpio_write(9, state);
-    state ^= 1;
-    for(int i = 0; i < 100000; i++) {
-      asm("nop");
+    if(beep_flag) {
+      if(syst_micros() > stop_time) {
+        pwm_stop();
+        beep_flag = 0;
+      }
     }
   }
   return 0;

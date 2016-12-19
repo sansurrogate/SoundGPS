@@ -5,6 +5,10 @@
 #define OSC_FREQUENCY 19200000
 #define PWM_CLK_PASSWORD 0x5a000000
 
+#ifndef PWM_DEFAULT_FREQ
+#define PWM_DEFAULT_FREQ 5000
+#endif
+
 void pwm_set_frequency(unsigned int freq);
 void pwm_set_len(unsigned int len);
 void pwm_set_data(unsigned int data);
@@ -19,8 +23,10 @@ void pwm_init() {
   gpio_set_pin_mode(12, GPIO_INPUT_PULLDOWN);
   gpio_set_pin_mode(12, GPIO_ALT0);
 
-  pwm_set_frequency(10000);
+  pwm_set_frequency(PWM_DEFAULT_FREQ);
   pwm_set_len(32);
+  pwm_set_data(0xaaaaaaaa);
+  pwm_stop();
 }
 
 // chip rate must be larger than 4.7kHz
