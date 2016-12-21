@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdint.h>
-
+#define M_PI 3.1415926535
 #define SAMPLING_FREQ 48000
 #define CAREER_FREQ 6000
 #define CHIP_RATE 375
