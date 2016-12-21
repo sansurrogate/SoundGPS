@@ -2,14 +2,18 @@
 
 #include <stdio.h>
 
-#define BEEP_DURATION 200000 // 0.2ms
-int beep_flag = 0;
-long int stop_time = 0;
+#define BEEP_DURATION 100000 // 0.1s
+volatile int beep_flag = 0;
+volatile unsigned long long int stop_time = 0;
 
 void beep() {
+  unsigned long long int temp_time = syst_micros();
   pwm_start();
-  stop_time = syst_micros() + BEEP_DURATION;
+  // printf("b\r\n");
+  unsigned long long int temp_stop_time = temp_time + BEEP_DURATION;
+  stop_time = temp_stop_time;
   beep_flag = 1;
+  // printf("c\r\n");
 }
 
 void toggle_pin() {
@@ -29,9 +33,11 @@ int main(void) {
 
   while(1) {
     if(beep_flag) {
-      if(syst_micros() > stop_time) {
+      unsigned long long int temp_time = syst_micros();
+      if(temp_time > stop_time) {
         pwm_stop();
         beep_flag = 0;
+        printf("a\r\n");
       }
     }
   }

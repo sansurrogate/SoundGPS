@@ -73,7 +73,6 @@ void interrupt_IRQ_handler(void){
 
 		// 割り込みフラグクリア
 		*TIMER_IRQ_CLR = 0;
-		printf("timer_irq\r\n");
 
 		// デバッグ用
 		// フラグがクリアされたかチェック

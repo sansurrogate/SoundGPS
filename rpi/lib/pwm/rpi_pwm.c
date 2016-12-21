@@ -1,12 +1,13 @@
 #include "periphs/rpi_periphs.h"
 #include "gpio/rpi_gpio.h"
+#include <stdio.h>
 
 // Default oscillator value is 19.2 [MHz]
 #define OSC_FREQUENCY 19200000
 #define PWM_CLK_PASSWORD 0x5a000000
 
 #ifndef PWM_DEFAULT_FREQ
-#define PWM_DEFAULT_FREQ 5000
+#define PWM_DEFAULT_FREQ 8000
 #endif
 
 void pwm_set_frequency(unsigned int freq);
@@ -59,6 +60,8 @@ void pwm_set_frequency(unsigned int freq) {
 void pwm_start() {
   // without no algorythm, enable PWM_CTL
   *PWM_CTL = 0x00000003;
+
+  // printf("pwm_start\r\n");
 }
 
 void pwm_stop() {
