@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
-#define M_PI 3.1415926535
 #define SAMPLING_FREQ 48000
 #define CAREER_FREQ 8000
 #define CHIP_RATE 160
@@ -31,17 +31,35 @@ int main(int ARGC, char *ARGV[]) {
   }
 
   // ファイルに書き出し
-  FILE *fp;
-  if ((fp = fopen(ARGV[1], "w")) == NULL) {
+  char *text_file_name, *raw_file_name;
+  int text_file_name_len = strlen("data/") + strlen(ARGV[1]) + strlen(".txt") + 1;
+  int raw_file_name_len = strlen("data/") + strlen(ARGV[1]) + strlen(".raw") + 1;
+  text_file_name = (char *)malloc(sizeof(char) * text_file_name_len);
+  raw_file_name = (char *)malloc(sizeof(char) * raw_file_name_len);
+  strcpy(text_file_name, "data/");
+  strcpy(raw_file_name, "data/");
+  strcat(text_file_name, ARGV[1]);
+  strcat(raw_file_name, ARGV[1]);
+  strcat(text_file_name, ".txt");
+  strcat(raw_file_name, ".raw");
+
+  FILE *text, *raw;
+  if ((text = fopen(text_file_name, "w")) == NULL) {
+    perror("fopen");
+    exit(1);
+  }
+  if ((raw = fopen(raw_file_name, "w")) == NULL) {
     perror("fopen");
     exit(1);
   }
 
   for(int i = 0; i < N; i++) {
-    fprintf(fp, "%d %d\n", i, buf[i]);
+    fprintf(text, "%d %d\n", i, buf[i]);
+    fwrite(&buf[i], sizeof(int16_t), 1, raw);
   }
 
-  fclose(fp);
+  fclose(text);
+  fclose(raw);
   pclose(rec);
 
   return 0;

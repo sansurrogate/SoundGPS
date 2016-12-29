@@ -1,7 +1,7 @@
 .PHONY: default clean
 default:
-	gcc -o send send.c -std=c99 -lm
-	gcc -o recieve recieve.c -std=c99 -lm
+	gcc -o send send.c -lm
+	gcc -o recieve recieve.c -lm
 
 clean:
 	rm -r send recieve
