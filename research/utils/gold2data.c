@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <math.h>
 #define CHANNEL_NUM 2
 #define CODE_PERIOD 31
 
@@ -48,7 +48,7 @@ int main()
                 {
                     for(int k = 0; k < CODE_PERIOD; k++)
                         {
-                            res[channel] += d[j + k] * (-1 * code[channel][k]);
+                            res[channel] += d[j + k] * ( -2 * code[channel][k] + 1 );
                         }
                     
                 }
