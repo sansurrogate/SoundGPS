@@ -19,8 +19,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
 
-typedef char sample_t;
+typedef int16_t sample_t;
 
 void die(char * s) {
   perror(s); 
