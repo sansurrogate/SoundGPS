@@ -10,8 +10,9 @@ void beep() {
   unsigned long long int temp_time = syst_micros();
   pwm_start();
   // printf("b\r\n");
-  unsigned long long int temp_stop_time = temp_time + BEEP_DURATION;
-  stop_time = temp_stop_time;
+  // unsigned long long int temp_stop_time = temp_time + BEEP_DURATION;
+  // stop_time = temp_stop_time;
+  stop_time = temp_time + BEEP_DURATION;
   beep_flag = 1;
   // printf("c\r\n");
 }
