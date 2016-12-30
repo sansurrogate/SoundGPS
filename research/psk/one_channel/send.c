@@ -11,7 +11,7 @@
 #define N (SAMPLING_FREQ * CODE_PERIOD / CHIP_RATE)
 
 int main(int ARGC, char *ARGV[]) {
-  int phy_offset[CHANNEL_NUM] = {0, 0};
+  int phy_offset[CHANNEL_NUM] = {0, N / 2};
   double amp[CHANNEL_NUM] = {0.2, 0.2};
 
   // 1チップあたりの波形
