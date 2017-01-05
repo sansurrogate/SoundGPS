@@ -27,20 +27,27 @@ int main(void) {
   rpi_init();
 
   gpio_set_pin_mode(9, GPIO_OUTPUT);
-  synchronize_attach_interrupt(beep);
-  timer_attach_interrupt(toggle_pin);
-
-  interrupt_enable_IRQ();
+  // synchronize_attach_interrupt(beep);
+  // timer_attach_interrupt(toggle_pin);
+  //
+  // interrupt_enable_IRQ();
+  pwm_start();
 
   while(1) {
-    if(beep_flag) {
-      unsigned long long int temp_time = syst_micros();
-      if(temp_time > stop_time) {
-        pwm_stop();
-        beep_flag = 0;
-        printf("a\r\n");
-      }
-    }
+    // if(beep_flag) {
+    //   unsigned long long int temp_time = syst_micros();
+    //   if(temp_time > stop_time) {
+    //     pwm_stop();
+    //     beep_flag = 0;
+    //     printf("a\r\n");
+    //   }
+    // }
+    // for(int i = 0; i < 32; i++) {
+    //   printf("dest[%02d]=0x%08x\r\n", i, dest_ary[i]);
+    // }
+
+    pwm_debug_info();
+    pwm_rescue();
   }
   return 0;
 }

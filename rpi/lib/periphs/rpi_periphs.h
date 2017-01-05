@@ -148,6 +148,16 @@
 #define PWM_RNG2 ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x20))
 #define PWM_DAT2 ((vu32_t *)PHY_PERI_ADDR(PWM_BASE + 0x24))
 
+// DMA Peripheral
+#define DMA_BASE (0x007000)
+#define DMA0_CS ((vu32_t *)PHY_PERI_ADDR(DMA_BASE + 0x000))
+#define DMA0_CONBLK_AD ((vu32_t *)PHY_PERI_ADDR(DMA_BASE + 0x004))
+#define DMA0_DEBUG ((vu32_t *)PHY_PERI_ADDR(DMA_BASE + 0x020))
+#define DMA0_NEXTCONBLOCK ((vu32_t *)PHY_PERI_ADDR(DMA_BASE + 0x01c))
+
+#define DMA_INT_STATUS ((vu32_t *)PHY_PERI_ADDR(DMA_BASE + 0xfe0))
+#define DMA_ENABLE ((vu32_t *)PHY_PERI_ADDR(DMA_BASE + 0xff0))
+
 // Clock Manager
 #define CM_BASE (0x101000)
 #define CM_PWMCTL ((vu32_t *)PHY_PERI_ADDR(CM_BASE + 0xa0))
