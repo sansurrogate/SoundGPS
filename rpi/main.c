@@ -6,8 +6,21 @@
 volatile int beep_flag = 0;
 volatile unsigned long long int stop_time = 0;
 
-#define N 32
-static uint32_t data[N];
+#define SAMPLING_FREQ 48000
+#define CAREER_FREQ 6000
+#define CHIP_RATE 375
+#define CODE_PERIOD 31
+#define CHANNEL_NUM 2
+#define SELF_CHANNEL 0
+
+static uint32_t data[2 * CODE_PERIOD];
+
+// Gold系列
+char code[CHANNEL_NUM][CODE_PERIOD] = {{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1,
+                     1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0},
+                    {0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0,
+                     0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1}};
+
 
 // void beep() {
 //   unsigned long long int temp_time = syst_micros();
@@ -46,19 +59,27 @@ int main(void) {
 
   gpio_set_pin_mode(9, GPIO_OUTPUT);
 
-  for(int i = 0; i < N; i++) {
-    data[i] = 0x80000000;
+  for(int i = 0; i < CODE_PERIOD; i++) {
+    int signal = code[SELF_CHANNEL][i];
+    if(signal == 0) {
+      data[2 * i] = 0x99999999;
+      data[2 * i + 1] = 0x99999999;
+    }
+    if(signal == 1) {
+      data[2 * i] = 0xcccccccc;
+      data[2 * i + 1] = 0xcccccccc;
+    }
   }
-  pwm_set_data(data, N);
+  pwm_set_data(data, 2 * CODE_PERIOD);
 
-  timer_set_period(500000);
+  // timer_set_period(500000);
+  //
+  // synchronize_attach_interrupt(syncro);
+  // timer_attach_interrupt(toggle_pin);
+  //
+  // interrupt_enable_IRQ();
 
-  synchronize_attach_interrupt(syncro);
-  timer_attach_interrupt(toggle_pin);
-
-  interrupt_enable_IRQ();
-
-  // pwm_start();
+  pwm_start();
 
   while(1) {
     // if(beep_flag) {
