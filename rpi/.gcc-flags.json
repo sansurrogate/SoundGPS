@@ -1,0 +1,8 @@
+{
+  "execPath": "arm-none-eabi-gcc",
+  "gccDefaultCFlags": "-Wall -L./lib/arm/lib/gcc -L./lib/arm/lib/newlib -lgcc -lc",
+  "gccDefaultCppFlags": "-Wall",
+  "gccErrorLimit": 15,
+  "gccIncludePaths": ".,./rpi/lib,./rpi/lib/arm/include/newlib",
+  "gccSuppressWarnings": true
+}
