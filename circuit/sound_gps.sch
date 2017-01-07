@@ -1541,6 +1541,49 @@ Width=48mm, Depth=10mm, Height=10mm</description>
 <wire x1="14" y1="14.5" x2="14" y2="7.5" width="0.127" layer="21"/>
 <wire x1="-14" y1="-7.5" x2="-14" y2="-14.5" width="0.127" layer="21"/>
 </package>
+<package name="TOGGLESW_SLIM">
+<description>&lt;b&gt;TOGGLE SWITCH&lt;/b&gt;&lt;p&gt;
+Marquardt</description>
+<pad name="3" x="0" y="-2.54" drill="0.9" shape="long"/>
+<pad name="2" x="0" y="0" drill="0.9" shape="long"/>
+<pad name="1" x="0" y="2.54" drill="0.9" shape="long"/>
+<wire x1="1.905" y1="-1.27" x2="2.54" y2="-1.905" width="0.1524" layer="51"/>
+<wire x1="2.54" y1="-1.905" x2="2.54" y2="-2.54" width="0.1524" layer="51"/>
+<wire x1="1.905" y1="-3.175" x2="2.54" y2="-2.54" width="0.1524" layer="51"/>
+<wire x1="1.905" y1="-3.175" x2="-1.905" y2="-3.175" width="0.1524" layer="51"/>
+<wire x1="-2.54" y1="-2.54" x2="-1.905" y2="-3.175" width="0.1524" layer="51"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="-1.905" width="0.1524" layer="51"/>
+<wire x1="-1.905" y1="-1.27" x2="-2.54" y2="-1.905" width="0.1524" layer="51"/>
+<wire x1="-1.905" y1="-1.27" x2="1.905" y2="-1.27" width="0.1524" layer="51"/>
+<wire x1="1.6002" y1="1.27" x2="2.54" y2="-1.905" width="0.1524" layer="51"/>
+<text x="-3.81" y="6.35" size="1.778" layer="25" font="vector" ratio="10">&gt;NAME</text>
+<wire x1="-1.6002" y1="1.27" x2="-2.54" y2="-1.905" width="0.1524" layer="51"/>
+<wire x1="-2.54" y1="-1.27" x2="2.54" y2="-1.27" width="0.1524" layer="51" curve="-233.13" cap="flat"/>
+<wire x1="-1.6002" y1="1.27" x2="1.6002" y2="1.27" width="0.1524" layer="51"/>
+<text x="-3.81" y="-9.525" size="1.778" layer="27" font="vector" ratio="10">&gt;VALUE</text>
+<wire x1="2.032" y1="-4.07" x2="2.54" y2="-3.302" width="0.127" layer="21" curve="90"/>
+<wire x1="2.54" y1="-3.302" x2="2.54" y2="3.302" width="0.127" layer="21"/>
+<wire x1="2.54" y1="3.302" x2="2.032" y2="4.07" width="0.127" layer="21" curve="90"/>
+<wire x1="2.032" y1="4.07" x2="-2.032" y2="4.07" width="0.127" layer="21"/>
+<wire x1="-2.032" y1="4.07" x2="-2.54" y2="3.302" width="0.127" layer="21" curve="90"/>
+<wire x1="-2.54" y1="3.302" x2="-2.54" y2="-3.302" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-3.302" x2="-2.032" y2="-4.07" width="0.127" layer="21" curve="90"/>
+<wire x1="-2.032" y1="-4.07" x2="2.032" y2="-4.07" width="0.127" layer="21"/>
+</package>
+<package name="TOGGLESW_PANEL">
+<pad name="2" x="0" y="0" drill="2" shape="octagon"/>
+<pad name="1" x="0" y="4.7" drill="2" shape="octagon"/>
+<pad name="3" x="0" y="-4.7" drill="2" shape="octagon"/>
+<wire x1="-3.4" y1="6.2" x2="-3.4" y2="-6.2" width="0.127" layer="21"/>
+<wire x1="3.4" y1="6.2" x2="3.4" y2="-6.2" width="0.127" layer="21"/>
+<wire x1="-3.2" y1="-6.4" x2="3.2" y2="-6.4" width="0.127" layer="21"/>
+<circle x="0" y="0" radius="3.2649625" width="0.127" layer="21"/>
+<wire x1="-3.4" y1="6.2" x2="-3.2" y2="6.4" width="0.127" layer="21" curve="-67.380135"/>
+<wire x1="-3.2" y1="6.4" x2="3.2" y2="6.4" width="0.127" layer="21"/>
+<wire x1="3.2" y1="6.4" x2="3.4" y2="6.2" width="0.127" layer="21" curve="-67.380135"/>
+<wire x1="-3.2" y1="-6.4" x2="-3.4" y2="-6.2" width="0.127" layer="21" curve="-67.380135"/>
+<wire x1="3.4" y1="-6.2" x2="3.2" y2="-6.4" width="0.127" layer="21" curve="-67.380135"/>
+</package>
 </packages>
 <symbols>
 <symbol name="C">
@@ -1587,6 +1630,29 @@ Width=48mm, Depth=10mm, Height=10mm</description>
 <wire x1="1.016" y1="-1.016" x2="1.651" y2="1.016" width="0.2032" layer="94"/>
 <wire x1="1.651" y1="1.016" x2="2.286" y2="-1.016" width="0.2032" layer="94"/>
 <wire x1="2.286" y1="-1.016" x2="2.54" y2="0" width="0.2032" layer="94"/>
+</symbol>
+<symbol name="TOGGLESW">
+<wire x1="-3.81" y1="1.905" x2="-2.54" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-3.81" y1="1.905" x2="-3.81" y2="0" width="0.254" layer="94"/>
+<wire x1="-3.81" y1="0" x2="-1.905" y2="0" width="0.1524" layer="94"/>
+<wire x1="-3.81" y1="0" x2="-3.81" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-0.762" y2="0" width="0.1524" layer="94"/>
+<wire x1="-5.08" y1="1.905" x2="-3.81" y2="1.905" width="0.254" layer="94"/>
+<wire x1="0.254" y1="0" x2="0.635" y2="0" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="0" x2="1.905" y2="0" width="0.1524" layer="94"/>
+<text x="-6.35" y="-1.905" size="1.778" layer="95" rot="R90">&gt;NAME</text>
+<wire x1="2.54" y1="-3.175" x2="2.54" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-1.905" x2="0.635" y2="3.175" width="0.254" layer="94"/>
+<pin name="P" x="2.54" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="S" x="5.08" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<wire x1="3.81" y1="2.54" x2="5.08" y2="2.54" width="0.254" layer="94"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="3.175" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="3.175" width="0.254" layer="94"/>
+<pin name="O" x="0" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<text x="-3.81" y="2.54" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<wire x1="-0.762" y1="0" x2="-0.254" y2="-0.762" width="0.1524" layer="94"/>
+<wire x1="-0.254" y1="-0.762" x2="0.254" y2="0" width="0.1524" layer="94"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -1934,6 +2000,36 @@ Width=48mm, Depth=10mm, Height=10mm</description>
 <connects>
 <connect gate="G$1" pin="1" pad="P$1"/>
 <connect gate="G$1" pin="2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="TOGGLESW_SLIM" prefix="SW">
+<description>&lt;b&gt;3-pin Toggle Switch&lt;/b&gt;
+&lt;p&gt;
+sold in akidzuki @ 80yen (2008/04/09)</description>
+<gates>
+<gate name="G$1" symbol="TOGGLESW" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TOGGLESW_SLIM">
+<connects>
+<connect gate="G$1" pin="O" pad="1"/>
+<connect gate="G$1" pin="P" pad="2"/>
+<connect gate="G$1" pin="S" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="PANEL" package="TOGGLESW_PANEL">
+<connects>
+<connect gate="G$1" pin="O" pad="1"/>
+<connect gate="G$1" pin="P" pad="2"/>
+<connect gate="G$1" pin="S" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2474,6 +2570,7 @@ Type: &lt;b&gt;SPC4077 / SPC 4078&lt;/b&gt;&lt;p&gt;</description>
 <part name="VR1" library="Passive_Robotech" deviceset="VR" device="" value="20k"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="R1" library="Passive_Robotech" deviceset="R" device="-1608" value="10k"/>
+<part name="SW1" library="Passive_Robotech" deviceset="TOGGLESW_SLIM" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2482,7 +2579,7 @@ Type: &lt;b&gt;SPC4077 / SPC 4078&lt;/b&gt;&lt;p&gt;</description>
 <instances>
 <instance part="JP1" gate="A" x="-66.04" y="45.72"/>
 <instance part="IC1" gate="A1" x="0" y="73.66"/>
-<instance part="P+1" gate="1" x="-12.7" y="78.74"/>
+<instance part="P+1" gate="1" x="-33.02" y="78.74"/>
 <instance part="P+2" gate="1" x="12.7" y="78.74"/>
 <instance part="GND1" gate="1" x="0" y="50.8"/>
 <instance part="C1" gate="G$1" x="-12.7" y="60.96"/>
@@ -2503,25 +2600,23 @@ Type: &lt;b&gt;SPC4077 / SPC 4078&lt;/b&gt;&lt;p&gt;</description>
 <instance part="VR1" gate="G$1" x="-27.94" y="20.32" rot="R90"/>
 <instance part="GND6" gate="1" x="-27.94" y="10.16"/>
 <instance part="R1" gate="G$1" x="-27.94" y="33.02" rot="R90"/>
+<instance part="SW1" gate="G$1" x="-25.4" y="76.2" rot="R270"/>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="+12V" class="0">
 <segment>
-<pinref part="P+1" gate="1" pin="+12V"/>
-<wire x1="-12.7" y1="76.2" x2="-12.7" y2="73.66" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="A1" pin="VI"/>
-<wire x1="-12.7" y1="73.66" x2="-10.16" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="-12.7" y1="73.66" x2="-12.7" y2="63.5" width="0.1524" layer="91"/>
-<junction x="-12.7" y="73.66"/>
-<pinref part="C1" gate="G$1" pin="1"/>
-</segment>
-<segment>
 <pinref part="POWER" gate="G$1" pin="3"/>
 <pinref part="P+4" gate="1" pin="+12V"/>
 <wire x1="-60.96" y1="-5.08" x2="-55.88" y2="-5.08" width="0.1524" layer="91"/>
 <wire x1="-55.88" y1="-5.08" x2="-55.88" y2="-2.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="P+1" gate="1" pin="+12V"/>
+<wire x1="-33.02" y1="76.2" x2="-33.02" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="SW1" gate="G$1" pin="P"/>
+<wire x1="-33.02" y1="73.66" x2="-30.48" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -2737,6 +2832,19 @@ Type: &lt;b&gt;SPC4077 / SPC 4078&lt;/b&gt;&lt;p&gt;</description>
 <pinref part="VR1" gate="G$1" pin="2"/>
 <pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="-27.94" y1="25.4" x2="-27.94" y2="27.94" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="IC1" gate="A1" pin="VI"/>
+<wire x1="-12.7" y1="73.66" x2="-10.16" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="-12.7" y1="73.66" x2="-12.7" y2="63.5" width="0.1524" layer="91"/>
+<pinref part="C1" gate="G$1" pin="1"/>
+<pinref part="SW1" gate="G$1" pin="S"/>
+<wire x1="-20.32" y1="71.12" x2="-17.78" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="71.12" x2="-17.78" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="73.66" x2="-12.7" y2="73.66" width="0.1524" layer="91"/>
+<junction x="-12.7" y="73.66"/>
 </segment>
 </net>
 </nets>
