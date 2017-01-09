@@ -2258,6 +2258,15 @@ Soichiro Iwataki&lt;br&gt;
 <wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.1524" layer="21"/>
 <text x="-2.54" y="-3.81" size="1.27" layer="21">1</text>
 </package>
+<package name="DCJACK">
+<pad name="SIDE1" x="-2.54" y="0" drill="3.81" diameter="6.35"/>
+<pad name="CENTER" x="5.08" y="0" drill="3.81" diameter="6.35"/>
+<pad name="SIDE2" x="1.27" y="-5.08" drill="3.81"/>
+<wire x1="5.08" y1="5.08" x2="5.08" y2="-5.08" width="0.127" layer="21"/>
+<wire x1="5.08" y1="-5.08" x2="-7.62" y2="-5.08" width="0.127" layer="21"/>
+<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="5.08" width="0.127" layer="21"/>
+<wire x1="-7.62" y1="5.08" x2="5.08" y2="5.08" width="0.127" layer="21"/>
+</package>
 <package name="18742">
 <pad name="P$1" x="5.8" y="0" drill="1.6" shape="long" rot="R90"/>
 <pad name="P$2" x="0" y="0" drill="1.6" shape="long" rot="R90"/>
@@ -2300,6 +2309,17 @@ Soichiro Iwataki&lt;br&gt;
 <text x="-3.81" y="5.842" size="1.778" layer="95">&gt;NAME</text>
 <wire x1="-3.81" y1="5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
 <wire x1="1.27" y1="5.08" x2="1.27" y2="-2.54" width="0.4064" layer="94"/>
+</symbol>
+<symbol name="DCJACK">
+<pin name="1" x="5.08" y="2.54" length="middle" rot="R180"/>
+<pin name="2" x="5.08" y="0" length="middle" rot="R180"/>
+<pin name="3" x="5.08" y="-2.54" length="middle" rot="R180"/>
+<text x="-2.54" y="5.08" size="1.27" layer="94">&gt;NAME</text>
+<wire x1="-1.27" y1="3.81" x2="1.27" y2="3.81" width="0.254" layer="94"/>
+<wire x1="1.27" y1="3.81" x2="1.27" y2="-3.81" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-3.81" x2="-1.27" y2="-3.81" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="-3.81" x2="-1.27" y2="3.81" width="0.254" layer="94"/>
+<text x="-2.54" y="5.08" size="1.27" layer="94">&gt;NAME</text>
 </symbol>
 <symbol name="DCJACK-NEW">
 <circle x="0" y="0" radius="2.54" width="0.254" layer="94"/>
@@ -2350,6 +2370,23 @@ Soichiro Iwataki&lt;br&gt;
 <connects>
 <connect gate="G$1" pin="P$1" pad="1"/>
 <connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="DCJACK" prefix="J">
+<gates>
+<gate name="G$1" symbol="DCJACK" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="DCJACK">
+<connects>
+<connect gate="G$1" pin="1" pad="CENTER"/>
+<connect gate="G$1" pin="2" pad="SIDE1"/>
+<connect gate="G$1" pin="3" pad="SIDE2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2408,8 +2445,8 @@ Soichiro Iwataki&lt;br&gt;
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="R1" library="Passive_Robotech" deviceset="R" device="-1608" value="10k"/>
 <part name="SW1" library="Passive_Robotech" deviceset="TOGGLESW_SLIM" device=""/>
-<part name="POWER" library="Connector_Robotech" deviceset="DCJACK-NEW" device="-18742"/>
-<part name="SPEAKER" library="Connector_Robotech" deviceset="DCJACK-NEW" device="-18742"/>
+<part name="J2" library="Connector_Robotech" deviceset="DCJACK" device=""/>
+<part name="CN1" library="Connector_Robotech" deviceset="DCJACK-NEW" device="-18742"/>
 </parts>
 <sheets>
 <sheet>
@@ -2430,32 +2467,32 @@ Soichiro Iwataki&lt;br&gt;
 <instance part="SYNC1" gate="G$1" x="63.5" y="22.86"/>
 <instance part="GND3" gate="1" x="50.8" y="0"/>
 <instance part="CON1" gate="G$1" x="-7.62" y="-10.16"/>
-<instance part="P+4" gate="1" x="-55.88" y="0"/>
-<instance part="GND4" gate="1" x="-68.58" y="-2.54"/>
+<instance part="P+4" gate="1" x="-66.04" y="0"/>
+<instance part="GND4" gate="1" x="-73.66" y="2.54"/>
 <instance part="P+5" gate="1" x="-50.8" y="71.12"/>
 <instance part="GND5" gate="1" x="-50.8" y="10.16"/>
 <instance part="VR1" gate="G$1" x="-27.94" y="20.32" rot="R90"/>
 <instance part="GND6" gate="1" x="-27.94" y="10.16"/>
 <instance part="R1" gate="G$1" x="-27.94" y="33.02" rot="R90"/>
 <instance part="SW1" gate="G$1" x="-25.4" y="76.2" rot="R270"/>
-<instance part="POWER" gate="G$1" x="-73.66" y="-10.16"/>
-<instance part="SPEAKER" gate="G$1" x="-73.66" y="-27.94"/>
+<instance part="J2" gate="G$1" x="-73.66" y="-25.4"/>
+<instance part="CN1" gate="G$1" x="-78.74" y="-5.08"/>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="+12V" class="0">
 <segment>
-<pinref part="P+4" gate="1" pin="+12V"/>
-<wire x1="-66.04" y1="-10.16" x2="-55.88" y2="-10.16" width="0.1524" layer="91"/>
-<wire x1="-55.88" y1="-10.16" x2="-55.88" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="POWER" gate="G$1" pin="CENTER"/>
-</segment>
-<segment>
 <pinref part="P+1" gate="1" pin="+12V"/>
 <wire x1="-33.02" y1="76.2" x2="-33.02" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="SW1" gate="G$1" pin="P"/>
 <wire x1="-33.02" y1="73.66" x2="-30.48" y2="73.66" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="P+4" gate="1" pin="+12V"/>
+<wire x1="-66.04" y1="-2.54" x2="-66.04" y2="-5.08" width="0.1524" layer="91"/>
+<pinref part="CN1" gate="G$1" pin="CENTER"/>
+<wire x1="-66.04" y1="-5.08" x2="-71.12" y2="-5.08" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -2541,13 +2578,6 @@ Soichiro Iwataki&lt;br&gt;
 <junction x="50.8" y="30.48"/>
 </segment>
 <segment>
-<pinref part="GND4" gate="1" pin="GND"/>
-<wire x1="-73.66" y1="2.54" x2="-68.58" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="-68.58" y1="2.54" x2="-68.58" y2="0" width="0.1524" layer="91"/>
-<pinref part="POWER" gate="G$1" pin="TIP"/>
-<wire x1="-73.66" y1="0" x2="-73.66" y2="2.54" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="JP1" gate="A" pin="6"/>
 <pinref part="GND5" gate="1" pin="GND"/>
 <wire x1="-60.96" y1="63.5" x2="-50.8" y2="63.5" width="0.1524" layer="91"/>
@@ -2588,6 +2618,13 @@ Soichiro Iwataki&lt;br&gt;
 <pinref part="VR1" gate="G$1" pin="1"/>
 <wire x1="-27.94" y1="12.7" x2="-27.94" y2="15.24" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="GND4" gate="1" pin="GND"/>
+<wire x1="-73.66" y1="5.08" x2="-73.66" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="-73.66" y1="7.62" x2="-78.74" y2="7.62" width="0.1524" layer="91"/>
+<pinref part="CN1" gate="G$1" pin="TIP"/>
+<wire x1="-78.74" y1="5.08" x2="-78.74" y2="7.62" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="AUDIO_IN" class="0">
 <segment>
@@ -2609,9 +2646,9 @@ Soichiro Iwataki&lt;br&gt;
 <label x="15.24" y="25.4" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="-73.66" y1="-17.78" x2="-55.88" y2="-17.78" width="0.1524" layer="91"/>
-<label x="-58.42" y="-17.78" size="1.778" layer="95"/>
-<pinref part="SPEAKER" gate="G$1" pin="TIP"/>
+<wire x1="-68.58" y1="-25.4" x2="-58.42" y2="-25.4" width="0.1524" layer="91"/>
+<label x="-60.96" y="-25.4" size="1.778" layer="95"/>
+<pinref part="J2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="AUDIO_POUT" class="0">
@@ -2621,9 +2658,9 @@ Soichiro Iwataki&lt;br&gt;
 <label x="15.24" y="22.86" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="-66.04" y1="-27.94" x2="-55.88" y2="-27.94" width="0.1524" layer="91"/>
-<label x="-58.42" y="-27.94" size="1.778" layer="95"/>
-<pinref part="SPEAKER" gate="G$1" pin="CENTER"/>
+<wire x1="-68.58" y1="-22.86" x2="-58.42" y2="-22.86" width="0.1524" layer="91"/>
+<label x="-60.96" y="-22.86" size="1.778" layer="95"/>
+<pinref part="J2" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="SYNC_CLK" class="0">
