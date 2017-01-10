@@ -18,7 +18,8 @@ void synchronize_enable_interrupt() {
   *GPIO_EDS1 = 0xffffffff;
 
   // enable asynchronous rising event interruption
-  *GPIO_AREN0 = (1 << PIN_NUM);
+  // *GPIO_AREN0 = (1 << PIN_NUM);
+  *GPIO_REN0 = (1 << PIN_NUM);
 
   // enable gpio interrupt
   *INTERRUPT_ENABLE_IRQS2 |= (1 << 20);
@@ -26,7 +27,8 @@ void synchronize_enable_interrupt() {
 
 void synchronize_disable_interrupt() {
   *INTERRUPT_ENABLE_IRQS2 &= ~(1 << 20);
-  *GPIO_AREN0 &= ~(1 << PIN_NUM);
+  // *GPIO_AREN0 &= ~(1 << PIN_NUM);
+  *GPIO_REN0 &= ~(1 << PIN_NUM);
 }
 
 void synchronize_attach_interrupt(void (*f)(void)) {
