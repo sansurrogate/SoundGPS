@@ -7,7 +7,7 @@
 #define PWM_CLK_PASSWORD 0x5a000000
 
 #ifndef PWM_DEFAULT_FREQ
-#define PWM_DEFAULT_FREQ 32000
+#define PWM_DEFAULT_FREQ 24000
 #endif
 
 #define CM_PWMCTL_BUSY (1 << 7)
