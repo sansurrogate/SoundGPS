@@ -101,6 +101,18 @@ void fft_r(complex double * x,
   }
 }
 
+void create_window(complex double * x, long n)
+{
+    //hann window
+    // y(x) = 0.5 - 0.5cos(2 pi x) if 0 <= x <= 1
+    for(int i = 0; i < n; i++)
+        {
+            x[i] = 0.5 - 0.5 * cos(2 * M_PI * (double) i / (double) (n - 1));
+        }
+    
+}
+
+
 void fft(complex double * x, 
 	 complex double * y, 
 	 long n) {
@@ -127,6 +139,8 @@ int pow2check(long N) {
   }
   return 1;
 }
+
+
 
 void print_complex(FILE * wp, 
 		   complex double * Y, long n) {
@@ -193,7 +207,7 @@ complex double  get_median()
                 }
             
         }
-    return (W[1] + W[2]) / 2;
+    return (W[0] + W[1] + W[2] + W[3]) / (double) 4;
 }
 
 double get_offset()
@@ -278,12 +292,24 @@ int main(int argc, char ** argv) {
   sample_t * buf = calloc(sizeof(sample_t), n);
   complex double * X = calloc(sizeof(complex double), n);
   complex double * Y = calloc(sizeof(complex double), n);
+  complex double * W = calloc(sizeof(complex double), n);
+
+  
+  create_window(W, n);
+
+  
   while (1) {
     /* 標準入力からn個標本を読む */
     ssize_t m = read_n(0, n * sizeof(sample_t), buf);
     if (m == 0) break;
     /* 複素数の配列に変換 */
     sample_to_complex(buf, X, n);
+
+    for(int i = 0; i < n; i++)
+        {
+            X[i] = X[i] * W[i];
+        }
+    
     /* FFT -> Y */
     fft(X, Y, n);
 

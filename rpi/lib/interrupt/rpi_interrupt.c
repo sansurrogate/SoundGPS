@@ -53,11 +53,6 @@ void interrupt_IRQ_handler(void){
 	// printf("get IRQ in IRQ handler\r\n");
 	// printf("CPSR (in IRQ_handler) = 0x%08x\r\n",getmode());
 
-	if((*INTERRUPT_IRQ_PENDING2 & (1 << 20)) != 0) {
-		(*synchronize_IRQ_func)();
-		*GPIO_EDS0 = 0xffffffff;
-		*GPIO_EDS1 = 0xffffffff;
-	}
 
 	// Basic IRQ pendingをチェック
 	if((*INTERRUPT_IRQ_BASIC_PENDING & 0x01) != 0){
@@ -79,6 +74,12 @@ void interrupt_IRQ_handler(void){
 		// printf("irq_pending0 after: 0x%08x\r\n",*INTERRUPT_IRQ_BASIC_PENDING);
 		// printf("Timer Raw IRQ after: 0x%08x\r\n",*TIMER_RAWIRQ);
 		// printf("Timer IRQ end\r\n");
+	}
+
+	if((*INTERRUPT_IRQ_PENDING2 & (1 << 20)) != 0) {
+		(*synchronize_IRQ_func)();
+		*GPIO_EDS0 = 0xffffffff;
+		*GPIO_EDS1 = 0xffffffff;
 	}
 	// TODO: その他の割り込みも調べる
 
