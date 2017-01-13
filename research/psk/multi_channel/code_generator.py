@@ -56,9 +56,9 @@ if __name__ == '__main__':
     golds = generate_gold(ms[0], ms[1])
     kasamis = generate_kasami(n, ms[0])
     # codes = golds[:3]
-    codes = kasamis[:3]
+    codes = kasamis[:4]
+    print(codes)
     corr_c = correlate_calculator(codes)
-    corr = corr_c.get_correlate()
-    print(corr)
-    # corr_c.plot_self_correlate()
+    # corr = corr_c.get_correlate()
+    # print(corr)
     corr_c.plot_correlate()
