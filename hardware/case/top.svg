@@ -15,7 +15,7 @@
    id="svg4146"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="bottom.svg">
+   sodipodi:docname="top.svg">
   <defs
      id="defs4148" />
   <sodipodi:namedview
@@ -25,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="305.88652"
-     inkscape:cy="232.96166"
+     inkscape:zoom="1.9670033"
+     inkscape:cx="325.40903"
+     inkscape:cy="160.82585"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1056"
@@ -52,65 +52,62 @@
      inkscape:label="切断"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
+    <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.35387638;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 343.53385,800.96484 c 5.88279,0 10.61914,4.73322 10.61914,10.61328 l 0,24.64235 c 0,0 0.22043,10.68146 -10.45388,10.62992 l -141.91526,0.14019 c -3.74702,0.004 -6.76367,4.66381 -6.76367,10.45704 l 0,120.53711 c 0,5.79322 3.01665,10.45703 6.76367,10.45703 l 141.91526,0 c 10.80141,-0.13166 10.45388,10.77084 10.45388,10.77084 l 0,24.6432 c 0,5.8801 -4.73635,10.6134 -10.61914,10.6134 l -315.02344,0 c -5.88278,0 -10.61914,-4.7334 -10.61914,-10.6134 l 0,-212.27733 c 0,-5.88006 4.73636,-10.61328 10.61914,-10.61328 z"
        id="rect3336"
-       width="336.26031"
-       height="233.50439"
-       x="17.893473"
-       y="800.96436"
-       rx="10.618746"
-       ry="10.613836" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssccssssccsssssss" />
     <circle
        style="fill:none;stroke:#000000;stroke-width:0.34308979;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4144"
-       cx="47.834648"
+       cx="-324.21091"
        cy="1004.5275"
-       r="4.7005024" />
+       r="4.7005024"
+       transform="scale(-1,1)" />
     <circle
        style="fill:none;stroke:#000000;stroke-width:0.34308979;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4144-3"
-       cx="47.834644"
+       cx="-324.21094"
        cy="830.90552"
-       r="4.7005024" />
+       r="4.7005024"
+       transform="scale(-1,1)" />
     <circle
        style="fill:none;stroke:#000000;stroke-width:0.34308979;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4144-6"
-       cx="253.34645"
+       cx="-118.69912"
        cy="830.90552"
-       r="4.7005024" />
+       r="4.7005024"
+       transform="scale(-1,1)" />
     <circle
        style="fill:none;stroke:#000000;stroke-width:0.34308979;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4144-7"
-       cx="253.34645"
+       cx="-118.69912"
        cy="1004.5276"
-       r="4.7005024" />
+       r="4.7005024"
+       transform="scale(-1,1)" />
+    <circle
+       style="fill:none;stroke:#000000;stroke-width:0.35433072;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path3407"
+       cx="-106.29755"
+       cy="917.71655"
+       r="61.784763"
+       transform="scale(-1,1)" />
   </g>
   <g
      inkscape:groupmode="layer"
-     id="layer3"
+     id="layer2"
      inkscape:label="刻印">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="-820.6449"
-       y="317.80765"
-       id="text4267"
-       sodipodi:linespacing="125%"
-       transform="matrix(0,-1,1,0,0,0)"
-       inkscape:transform-center-x="32.142857"
-       inkscape:transform-center-y="88.571429"><tspan
+       style="font-style:normal;font-weight:normal;font-size:20px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="199.79633"
+       y="1022.3673"
+       id="text4210"
+       sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan4269"
-         x="-820.6449"
-         y="317.80765">T<tspan
-   style="text-align:end;text-anchor:end"
-   id="tspan4276">akaaki Sanjoh</tspan></tspan><tspan
-         sodipodi:role="line"
-         x="-820.6449"
-         y="336.55765"
-         id="tspan4274"><tspan
-   style="text-align:end;text-anchor:end"
-   id="tspan4278">Ayumu S</tspan>ekine</tspan></text>
+         id="tspan4212"
+         x="199.79633"
+         y="1022.3673">SoundGPS</tspan></text>
   </g>
 </svg>
