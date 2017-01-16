@@ -41,17 +41,20 @@ class correlate_calculator:
     def plot_correlate(self):
         arr = np.array(self.corr)
 
+        minimum = arr.min()
+        maximum = arr.max()
+
         subplot(self.count + 1, 1, 1)
         for i in range(self.count):
             plot(self.corr[i])
         ylabel("all")
-        axis([-4, len(self.corr[0]), arr.min(), arr.max()])
+        axis([-4, len(self.corr[0]), minimum, maximum])
 
         for i in range(self.count):
             subplot(self.count + 1, 1, i + 2)
             plot(self.corr[i])
             ylabel(str(self.pair[i]))
-            axis([-4, len(self.corr[0]), arr[i].min(), arr[i].max()])
+            axis([-4, len(self.corr[0]), minimum, maximum])
 
         show()
 
